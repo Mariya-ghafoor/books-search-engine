@@ -3,7 +3,8 @@ export const getBooksList = async (searchTerm = "") => {
   console.log("i received search term, ", searchTerm);
   if (searchTerm !== "") {
     const response = await fetch(
-      "https://www.googleapis.com/books/v1/volumes?q=" + searchTerm
+      "https://www.googleapis.com/books/v1/volumes?key=AIzaSyBUbf1ThcRwXmLIJu4o38Ht-b39vSUnhxM&q=" +
+        searchTerm
     );
     if (!response.ok) {
       throw new Error("Failed to fetch the books");

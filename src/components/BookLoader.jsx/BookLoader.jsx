@@ -11,16 +11,22 @@ function BookLoader({ searchTerm }) {
 
   useEffect(() => {
     console.log("useEffect called");
-    if (searchTerm === null) {
-      return;
-    }
-    console.log("i am here");
-    getBooksList(searchTerm)
-      .then((booksData) => setBooksData(booksData))
-      .catch(() => console.log("AN ERROR OCCURED WHILE FETCHING BOOKS"));
-    console.log("*****Received books data from getBooksList**** ", booksData);
-    if (booksData === null) {
-      setBooksData(null);
+
+    if (searchTerm != null) {
+      console.log("i am going to make a request to server");
+      getBooksList(searchTerm)
+        .then((booksData) => {
+          setBooksData(booksData);
+          console.log(
+            "*****Received books data from getBooksList**** ",
+            booksData
+          );
+        })
+        .catch(() => console.log("AN ERROR OCCURED WHILE FETCHING BOOKS"));
+
+      if (booksData === null) {
+        setBooksData(null);
+      }
     }
   }, [searchTerm]);
 

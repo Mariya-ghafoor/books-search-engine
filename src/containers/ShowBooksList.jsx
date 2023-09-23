@@ -2,46 +2,58 @@ import Card from "./Card";
 import styles from "./Card.module.scss";
 
 function ShowBooksList(data) {
-  console.log("i am in show books list. I receieved data ", data);
+  //qksjfksanfdjksnf
+
+  let title = "";
+  let authors = "";
+  let description = "";
+  let thumbnail = "";
+
   const booksDataObj = data.data;
+  if (booksDataObj) console.log("the value of bookdataobj is ", booksDataObj);
+
   let booksDataArray = [];
   let booksObjArr = [];
 
-  if (booksDataObj === (undefined || null) || !Object.keys(booksDataObj)) {
-    console.log("caught undefined/null in show books list");
+  try {
+    console.log("###### data keys receieved are ", booksDataObj.items);
+
+    if (booksDataObj.items === undefined)
+      return (
+        <h2 className={styles.error__message}>
+          Please enter a valid search term
+        </h2>
+      );
+
+    booksDataArray = booksDataObj.items;
+    console.log(booksDataArray);
+  } catch {
+    console.log("error trying to get search results");
     return (
       <>
         <Card book={null} />
       </>
     );
-  } else {
-    try {
-      console.log("###### data keys receieved are ", typeof booksDataObj.items);
-      booksDataArray = booksDataObj.items;
-      console.log(booksDataArray);
-    } catch {
-      console.log("error trying to get search results");
-      return (
-        <>
-          <Card book={null} />
-        </>
-      );
-    }
   }
 
   booksObjArr = booksDataArray.map((book) => {
     console.log("**** Book info***");
     //console.log(book.volumeInfo.imageLinks.thumbnail);
-    const title = book.volumeInfo.title;
-    const authors = book.volumeInfo.authors;
-    const averageRating = book.volumeInfo.averageRating;
-    const publisher = book.volumeInfo.publisher;
-    let thumbnail = "";
     try {
+      const full_title = book.volumeInfo.title;
+      title = full_title.replace(/^(.{30}[^\s]*).*/, "$1");
+      authors = book.volumeInfo.authors;
+      //const averageRating = book.volumeInfo.averageRating;
+      const full_description = book.volumeInfo.description;
+      description = full_description.replace(/^(.{50}[^\s]*).*/, "$1"); //this shows only 50 characters plus any subsequent non-space characters.
       thumbnail = book.volumeInfo.imageLinks.thumbnail;
-    } catch {}
+    } catch {
+      (e) => {
+        console.log(e.message);
+      };
+    }
 
-    return { title, authors, averageRating, publisher, thumbnail };
+    return { title, authors, description, thumbnail };
   });
 
   return (
