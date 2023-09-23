@@ -1,0 +1,46 @@
+.main {
+  /* background-image: url('../src/assets/ugur-akdemir-XT-o5O458as-unsplash.jpg'); */
+  /* background-image: url('../src/assets/alexander-grey-eMP4sYPJ9x0-unsplash.jpg'); */
+  /* background-size: cover; */
+
+  /* background-color: #1b1a27; */
+  background-image: url('../src/assets/chris-lawton-zvKx6ixUhWQ-unsplash.jpg');
+  background-size: cover;
+  height: 100vh;
+  /* background-repeat: inherit; */
+
+  @media screen and (max-width: 800px) {
+    /* background-size: contain; */
+    background-repeat: no-repeat;
+
+
+
+  }
+
+
+
+}
+
+.books__container {
+  /* background-color: rgb(204, 182, 158); */
+  background-image: url('../src/assets/chris-lawton-zvKx6ixUhWQ-unsplash.jpg');
+  /* padding-top: 20px; */
+  background-size: contain;
+  height: 100%;
+  margin-top: -80px;
+
+}
+
+
+
+
+.container__header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+  /* height: 100vh; */
+  gap: 30px;
+  width: 50vw;
+}

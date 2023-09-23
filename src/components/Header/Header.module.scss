@@ -1,0 +1,28 @@
+@import url("https://fonts.googleapis.com/css2?family=Macondo&family=Martian+Mono:wght@800&family=Pacifico&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  width: 100%;
+  // text-align: center;
+  font-size: 4vh;
+  // background-color: #f3f3f3;
+  color: white;
+
+  padding: 10px;
+}
+
+h1 {
+  font-family: "Martian Mono", monospace;
+  font-size: 100px;
+  margin-bottom: 10px;
+}
+
+h4 {
+  color: rgb(250, 79, 58);
+  font-family: "Macondo", cursive;
+  // font-family: "Pacifico", cursive;
+}
