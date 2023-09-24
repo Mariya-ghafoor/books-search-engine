@@ -11,6 +11,7 @@ function Card(book) {
   let description = "";
   let publisher = "";
   let categories = "";
+  let publishedDate = "";
   let { completeData, setCompleteData, modalData, setModalData } =
     useContext(ModalContext);
 
@@ -43,6 +44,10 @@ function Card(book) {
         publisher = book.publisher;
         categories = book.categories;
         description = book.description;
+        // const full_description = book.description;
+        // description = full_description.replace(/^(.{500}[^\s]*).*/, "$1"); //this shows only 100 characters plus any subsequent non-space characters.
+        publishedDate = book.publishedDate;
+
         thumbnail = book.imageLinks.thumbnail;
       } catch {}
 
@@ -52,6 +57,7 @@ function Card(book) {
         publisher,
         categories,
         description,
+        publishedDate,
         thumbnail,
       });
 

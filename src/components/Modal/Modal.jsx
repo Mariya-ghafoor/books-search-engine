@@ -30,7 +30,46 @@ function Modal() {
             <span className={styles.close} onClick={closeModalHandler}>
               &times;
             </span>
-            <p>{modalData.title}</p>
+            <div className={styles.modal__content__details}>
+              <img
+                src={modalData.thumbnail}
+                alt=""
+                className={styles.modal__content__thumbnail}
+              />
+
+              <div>
+                {modalData.title && (
+                  <p className={styles.modal__content__title}>
+                    {modalData.title}
+                  </p>
+                )}
+                {modalData.authors && (
+                  <p className={styles.modal__content__authors}>
+                    {modalData.authors}
+                  </p>
+                )}
+                {modalData.publisher && (
+                  <p className={styles.modal__content__publisher}>
+                    Published by: {modalData.publisher}
+                  </p>
+                )}
+                {modalData.publishedDate && (
+                  <p className={styles.modal__content__publishedDate}>
+                    Published on: {modalData.publishedDate}
+                  </p>
+                )}
+                {modalData.categories && (
+                  <p className={styles.modal__content__categories}>
+                    Category: {modalData.categories}
+                  </p>
+                )}
+                {modalData.description && (
+                  <p className={styles.modal__content__description}>
+                    {modalData.description}
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       )}

@@ -1,13 +1,8 @@
 .main {
-  /* background-image: url('../src/assets/ugur-akdemir-XT-o5O458as-unsplash.jpg'); */
-  /* background-image: url('../src/assets/alexander-grey-eMP4sYPJ9x0-unsplash.jpg'); */
-  /* background-size: cover; */
-
-  /* background-color: #1b1a27; */
   background-image: url('../src/assets/chris-lawton-zvKx6ixUhWQ-unsplash.jpg');
   background-size: cover;
   height: 100vh;
-  /* background-repeat: inherit; */
+
 
   @media screen and (max-width: 800px) {
     /* background-size: contain; */
