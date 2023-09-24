@@ -1,14 +1,14 @@
 import Searchbar from "./components/Searchbar/Searchbar";
 import "./App.css";
 import Header from "./Components/Header/Header";
-import { useContext, useState } from "react";
+import { useState } from "react";
 import Error from "./components/Error/Error";
 
 import BookLoader from "./components/BookLoader.jsx/BookLoader";
 import Footer from "./components/Footer/Footer";
-import ErrorContextProvider, {
-  ErrorContext,
-} from "./context/ErrorContextProvider";
+import ErrorContextProvider from "./context/ErrorContextProvider";
+import Modal from "./components/Modal/Modal";
+import ModalContextProvider from "./context/ModalContextProvider";
 
 function App() {
   console.log("Im in App");
@@ -22,18 +22,21 @@ function App() {
 
   return (
     <ErrorContextProvider>
-      <div className="main">
-        <div className="container__header">
-          <Header />
-          <Searchbar handleSubmit={handleSubmit} />
+      <ModalContextProvider>
+        <div className="main">
+          <div className="container__header">
+            <Header />
+            <Searchbar handleSubmit={handleSubmit} />
+          </div>
+          <Error />
         </div>
-        <Error />
-      </div>
 
-      <div className="books__container">
-        {searchTerm && <BookLoader searchTerm={searchTerm} />}
-      </div>
-      <Footer />
+        <div className="books__container">
+          {searchTerm && <BookLoader searchTerm={searchTerm} />}
+        </div>
+        <Modal />
+        <Footer />
+      </ModalContextProvider>
     </ErrorContextProvider>
   );
 }

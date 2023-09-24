@@ -2,11 +2,13 @@ import Card from "./Card";
 import styles from "./Card.module.scss";
 import { useContext } from "react";
 import { ErrorContext } from "../context/ErrorContextProvider";
+import { ModalContext } from "../context/ModalContextProvider";
 
 function ShowBooksList(data) {
   //qksjfksanfdjksnf
 
   let { errorMessage, setErrorMessage } = useContext(ErrorContext);
+  let { completeData, setCompleteData } = useContext(ModalContext);
 
   let title = "";
   let authors = "";
@@ -24,14 +26,15 @@ function ShowBooksList(data) {
 
     if (booksDataObj.items === undefined) {
       setErrorMessage(
-        "Uh oh looks like there are no results for that search. Try a different one may be?"
+        "Uh oh looks like there are no results for that search! Try a different one may be?"
       );
       console.log("Error message is: ", errorMessage);
       return;
     }
 
     booksDataArray = booksDataObj.items;
-    console.log(booksDataArray);
+    setCompleteData(booksDataArray);
+    console.log("i have set complete data. It is ", completeData);
   } catch (e) {
     console.log("error trying to get search results");
 
@@ -53,6 +56,7 @@ function ShowBooksList(data) {
     } catch {
       (e) => {
         console.log(e.message);
+        setErrorMessage("Uh oh that was unexpected? Try again may be?");
       };
     }
 
