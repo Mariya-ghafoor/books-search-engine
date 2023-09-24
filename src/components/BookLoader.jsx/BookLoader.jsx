@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 import { getBooksList } from "../../services/getBooksList";
 import ShowBooksList from "../../containers/showBooksList";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { ErrorContext } from "../../context/ErrorContextProvider";
 
 function BookLoader({ searchTerm }) {
   //const [query, setQuery] = useState(null);
   const [booksData, setBooksData] = useState(null);
+  let { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
   console.log("BookLoader receieved search term from App.jsx ", searchTerm);
 
@@ -28,6 +30,10 @@ function BookLoader({ searchTerm }) {
         setBooksData(null);
       }
     }
+    return () => {
+      console.log("Clean up: making error message null");
+      setErrorMessage(null);
+    };
   }, [searchTerm]);
 
   return <ShowBooksList data={booksData} />;

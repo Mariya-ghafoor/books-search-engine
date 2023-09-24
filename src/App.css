@@ -22,9 +22,9 @@
 }
 
 .books__container {
-  /* background-color: rgb(204, 182, 158); */
+
   background-image: url('../src/assets/chris-lawton-zvKx6ixUhWQ-unsplash.jpg');
-  /* padding-top: 20px; */
+
   background-size: contain;
   height: 100%;
   margin-top: -80px;

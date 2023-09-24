@@ -1,8 +1,12 @@
 import Card from "./Card";
 import styles from "./Card.module.scss";
+import { useContext } from "react";
+import { ErrorContext } from "../context/ErrorContextProvider";
 
 function ShowBooksList(data) {
   //qksjfksanfdjksnf
+
+  let { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
   let title = "";
   let authors = "";
@@ -18,22 +22,21 @@ function ShowBooksList(data) {
   try {
     console.log("###### data keys receieved are ", booksDataObj.items);
 
-    if (booksDataObj.items === undefined)
-      return (
-        <h2 className={styles.error__message}>
-          Please enter a valid search term
-        </h2>
+    if (booksDataObj.items === undefined) {
+      setErrorMessage(
+        "Uh oh looks like there are no results for that search. Try a different one may be?"
       );
+      console.log("Error message is: ", errorMessage);
+      return;
+    }
 
     booksDataArray = booksDataObj.items;
     console.log(booksDataArray);
-  } catch {
+  } catch (e) {
     console.log("error trying to get search results");
-    return (
-      <>
-        <Card book={null} />
-      </>
-    );
+
+    console.log("Error message is: ", e.message);
+    return <Card book={null} />;
   }
 
   booksObjArr = booksDataArray.map((book) => {
