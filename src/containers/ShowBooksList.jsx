@@ -1,6 +1,6 @@
 import Card from "../components/Card/Card.jsx";
 import styles from "../components/Card/Card.module.scss";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ErrorContext } from "../context/ErrorContextProvider";
 import { ModalContext } from "../context/ModalContextProvider";
 import { LoadingSpinnerContext } from "../context/LoadingSpinnerContextProvider.jsx";
@@ -9,21 +9,26 @@ import { LoadMoreContext } from "../context/LoadMoreContextProvider.jsx";
 function ShowBooksList(data) {
   //qksjfksanfdjksnf
 
+  //Setting data for Modal
+
   let { errorMessage, setErrorMessage } = useContext(ErrorContext);
   let { completeData, setCompleteData } = useContext(ModalContext);
   let { isLoading, setIsLoading } = useContext(LoadingSpinnerContext);
-  let { maxResults, setMaxResults } = useContext(LoadMoreContext);
+
+  let booksDataArray = [];
+  let booksObjArr = [];
 
   let title = "";
   let authors = "";
   let description = "";
   let thumbnail = "";
 
+  useEffect(() => {
+    setCompleteData(booksDataArray);
+  }, [booksDataArray]);
+
   const booksDataObj = data.data;
   if (booksDataObj) console.log("the value of bookdataobj is ", booksDataObj);
-
-  let booksDataArray = [];
-  let booksObjArr = [];
 
   try {
     console.log("###### data keys receieved are ", booksDataObj.items);
@@ -37,7 +42,9 @@ function ShowBooksList(data) {
     }
 
     booksDataArray = booksDataObj.items;
-    setCompleteData(booksDataArray);
+
+    console.log("^^^^^BOOKSDATA ARRAY VALUE IS, ", booksDataArray);
+
     console.log("i have set complete data. It is ", completeData);
   } catch (e) {
     console.log("error trying to get search results");
@@ -57,9 +64,6 @@ function ShowBooksList(data) {
       const full_description = book.volumeInfo.description;
       description = full_description.replace(/^(.{50}[^\s]*).*/, "$1"); //this shows only 50 characters plus any subsequent non-space characters.
       thumbnail = book.volumeInfo.imageLinks.thumbnail + "&fife=w20000-h20000";
-
-      //Show Load More button
-      setMaxResults(10);
     } catch {
       (e) => {
         console.log(e.message);

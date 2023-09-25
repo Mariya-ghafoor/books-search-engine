@@ -29,7 +29,10 @@ function BookLoader({ searchTerm }) {
 
     if (searchTerm != null) {
       console.log("i am going to make a request to server");
+
+      //Loading spinner
       setIsLoading(true);
+
       getBooksList(searchTerm, maxResults)
         .then((booksData) => {
           setBooksData(booksData);
@@ -37,6 +40,7 @@ function BookLoader({ searchTerm }) {
             "*****Received books data from getBooksList**** ",
             booksData
           );
+          setIsLoading(false);
         })
         .catch(() => {
           console.log("AN ERROR OCCURED WHILE FETCHING BOOKS");
@@ -77,7 +81,7 @@ function BookLoader({ searchTerm }) {
           );
         });
     }
-  }, [maxResults]);
+  }, [maxResults, searchTerm]);
 
   return <ShowBooksList data={booksData} />;
 }
