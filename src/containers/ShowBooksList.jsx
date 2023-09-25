@@ -13,7 +13,8 @@ function ShowBooksList(data) {
 
   let { errorMessage, setErrorMessage } = useContext(ErrorContext);
   let { completeData, setCompleteData } = useContext(ModalContext);
-  let { isLoading, setIsLoading } = useContext(LoadingSpinnerContext);
+  let { maxResults, setMaxResults, showLoadMore, setShowLoadMore } =
+    useContext(LoadMoreContext);
 
   let booksDataArray = [];
   let booksObjArr = [];
@@ -23,9 +24,9 @@ function ShowBooksList(data) {
   let description = "";
   let thumbnail = "";
 
-  useEffect(() => {
-    setCompleteData(booksDataArray);
-  }, [booksDataArray]);
+  // useEffect(() => {
+  //   setCompleteData(booksDataArray);
+  // }, [booksDataArray]);
 
   const booksDataObj = data.data;
   if (booksDataObj) console.log("the value of bookdataobj is ", booksDataObj);
@@ -44,6 +45,7 @@ function ShowBooksList(data) {
     booksDataArray = booksDataObj.items;
 
     console.log("^^^^^BOOKSDATA ARRAY VALUE IS, ", booksDataArray);
+    setCompleteData(booksDataArray);
 
     console.log("i have set complete data. It is ", completeData);
   } catch (e) {
@@ -64,6 +66,11 @@ function ShowBooksList(data) {
       const full_description = book.volumeInfo.description;
       description = full_description.replace(/^(.{50}[^\s]*).*/, "$1"); //this shows only 50 characters plus any subsequent non-space characters.
       thumbnail = book.volumeInfo.imageLinks.thumbnail + "&fife=w20000-h20000";
+
+      console.log("Clean up in ShowBooks: making error message null");
+      setErrorMessage(null);
+      console.log("Error message is now ", errorMessage);
+      setShowLoadMore(true);
     } catch {
       (e) => {
         console.log(e.message);

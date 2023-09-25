@@ -1,11 +1,26 @@
 * {
   caret-color: transparent;
+
 }
+
+.wrapper {
+  background-image: url('../src/assets/chris-lawton-zvKx6ixUhWQ-unsplash.jpg');
+  height: fit-content;
+  /* position: relative; */
+
+}
+
 
 .main {
   background-image: url('../src/assets/chris-lawton-zvKx6ixUhWQ-unsplash.jpg');
   background-size: cover;
   height: 100vh;
+
+  /* background-position: center;
+  background-repeat: repeat;
+  background-size: cover;
+  position: relative; */
+
 
 
   @media screen and (max-width: 800px) {
@@ -17,8 +32,9 @@
 .books__container {
   background-image: url('../src/assets/chris-lawton-zvKx6ixUhWQ-unsplash.jpg');
   background-size: cover;
+  background-repeat: repeat;
   height: 100%;
-  margin-top: -80px;
+  margin-top: -150px;
 
 }
 

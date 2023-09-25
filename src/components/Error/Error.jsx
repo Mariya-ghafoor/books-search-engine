@@ -6,7 +6,13 @@ function Error() {
   console.log("I AM IN ERROR");
   const { errorMessage } = useContext(ErrorContext);
   console.log({ errorMessage });
-  return <div className={styles.error__message}>{errorMessage}</div>;
+  return (
+    <>
+      {errorMessage && (
+        <div className={styles.error__message}>{errorMessage}</div>
+      )}
+    </>
+  );
 }
 
 export default Error;
