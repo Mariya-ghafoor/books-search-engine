@@ -5,8 +5,11 @@ export const LoadMoreContext = createContext(null);
 
 function LoadMoreContextProvider({ children }) {
   const [maxResults, setMaxResults] = useState(null);
+  const [showLoadMore, setShowLoadMore] = useState(false);
   return (
-    <LoadMoreContext.Provider value={{ maxResults, setMaxResults }}>
+    <LoadMoreContext.Provider
+      value={{ maxResults, setMaxResults, showLoadMore, setShowLoadMore }}
+    >
       {children}
     </LoadMoreContext.Provider>
   );

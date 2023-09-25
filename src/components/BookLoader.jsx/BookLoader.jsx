@@ -5,12 +5,15 @@ import { useEffect, useState, useContext } from "react";
 import { ErrorContext } from "../../context/ErrorContextProvider";
 import { LoadMoreContext } from "../../context/LoadMoreContextProvider";
 import LoadMore from "../LoadMore/LoadMore";
+import { LoadingSpinnerContext } from "../../context/LoadingSpinnerContextProvider";
 
 function BookLoader({ searchTerm }) {
   //const [query, setQuery] = useState(null);
   const [booksData, setBooksData] = useState(null);
   let { errorMessage, setErrorMessage } = useContext(ErrorContext);
-  let { maxResults, setMaxResults } = useContext(LoadMoreContext);
+  let { maxResults, setMaxResults, showLoadMore, setShowLoadMore } =
+    useContext(LoadMoreContext);
+  const { isLoading, setIsLoading } = useContext(LoadingSpinnerContext);
 
   console.log("BookLoader receieved search term from App.jsx ", searchTerm);
   console.log(
@@ -22,10 +25,11 @@ function BookLoader({ searchTerm }) {
 
   useEffect(() => {
     console.log("useEffect called");
+    setMaxResults(10);
 
     if (searchTerm != null) {
-      setMaxResults(10);
       console.log("i am going to make a request to server");
+      setIsLoading(true);
       getBooksList(searchTerm, maxResults)
         .then((booksData) => {
           setBooksData(booksData);
@@ -56,6 +60,7 @@ function BookLoader({ searchTerm }) {
 
     if (searchTerm != null) {
       console.log("i am going to make a request to server");
+
       getBooksList(searchTerm, maxResults)
         .then((booksData) => {
           setBooksData(booksData);
@@ -63,9 +68,13 @@ function BookLoader({ searchTerm }) {
             "*****Received books data from getBooksList**** ",
             booksData
           );
+          setShowLoadMore(true);
         })
         .catch((e) => {
-          console.log("AN ERROR OCCURED WHILE FETCHING BOOKS", e.message);
+          console.log(
+            "AN ERROR OCCURED WHILE FETCHING BOOKS IN LOAD MORE USE EFFECT",
+            e.message
+          );
         });
     }
   }, [maxResults]);

@@ -1,3 +1,7 @@
+* {
+  caret-color: transparent;
+}
+
 .main {
   background-image: url('../src/assets/chris-lawton-zvKx6ixUhWQ-unsplash.jpg');
   background-size: cover;

@@ -1,14 +1,18 @@
-import Card from "./Card";
-import styles from "./Card.module.scss";
+import Card from "../components/Card/Card.jsx";
+import styles from "../components/Card/Card.module.scss";
 import { useContext } from "react";
 import { ErrorContext } from "../context/ErrorContextProvider";
 import { ModalContext } from "../context/ModalContextProvider";
+import { LoadingSpinnerContext } from "../context/LoadingSpinnerContextProvider.jsx";
+import { LoadMoreContext } from "../context/LoadMoreContextProvider.jsx";
 
 function ShowBooksList(data) {
   //qksjfksanfdjksnf
 
   let { errorMessage, setErrorMessage } = useContext(ErrorContext);
   let { completeData, setCompleteData } = useContext(ModalContext);
+  let { isLoading, setIsLoading } = useContext(LoadingSpinnerContext);
+  let { maxResults, setMaxResults } = useContext(LoadMoreContext);
 
   let title = "";
   let authors = "";
@@ -53,6 +57,9 @@ function ShowBooksList(data) {
       const full_description = book.volumeInfo.description;
       description = full_description.replace(/^(.{50}[^\s]*).*/, "$1"); //this shows only 50 characters plus any subsequent non-space characters.
       thumbnail = book.volumeInfo.imageLinks.thumbnail + "&fife=w20000-h20000";
+
+      //Show Load More button
+      setMaxResults(10);
     } catch {
       (e) => {
         console.log(e.message);

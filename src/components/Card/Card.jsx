@@ -1,7 +1,7 @@
 import styles from "./Card.module.scss";
 import { useContext } from "react";
-import { ModalContext } from "../context/ModalContextProvider";
-import Modal from "../components/Modal/Modal";
+import { ModalContext } from "../../context/ModalContextProvider";
+import Modal from "../Modal/Modal";
 
 function Card(book) {
   console.log("i am in Card");

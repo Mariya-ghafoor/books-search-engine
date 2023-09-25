@@ -11,6 +11,8 @@ import Modal from "./components/Modal/Modal";
 import ModalContextProvider from "./context/ModalContextProvider";
 import LoadMore from "./components/LoadMore/LoadMore";
 import LoadMoreContextProvider from "./context/LoadMoreContextProvider";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
+import LoadingSpinnerContextProvider from "./context/LoadingSpinnerContextProvider";
 
 function App() {
   console.log("Im in App");
@@ -26,21 +28,24 @@ function App() {
     <ErrorContextProvider>
       <ModalContextProvider>
         <LoadMoreContextProvider>
-          <div className="main">
-            <div className="container__header">
-              <Header />
-              <Searchbar handleSubmit={handleSubmit} />
+          <LoadingSpinnerContextProvider>
+            <div className="main">
+              <div className="container__header">
+                <Header />
+                <Searchbar handleSubmit={handleSubmit} />
+              </div>
             </div>
-          </div>
+            <LoadingSpinner />
 
-          <div className="books__container">
-            {searchTerm && <BookLoader searchTerm={searchTerm} />}
-          </div>
+            <div className="books__container">
+              {searchTerm && <BookLoader searchTerm={searchTerm} />}
 
-          <LoadMore />
-          <Modal />
-          <Error />
-          <Footer />
+              <LoadMore />
+              <Modal />
+              <Error />
+              <Footer />
+            </div>
+          </LoadingSpinnerContextProvider>
         </LoadMoreContextProvider>
       </ModalContextProvider>
     </ErrorContextProvider>

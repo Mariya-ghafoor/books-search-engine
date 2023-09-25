@@ -1,0 +1,12 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__button {
+    font-size: 1em;
+    padding: 5px;
+    background-color: hsl(0, 0%, 0%, 0.5);
+    color: white;
+  }
+}
