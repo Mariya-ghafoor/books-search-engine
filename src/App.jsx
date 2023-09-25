@@ -9,6 +9,8 @@ import Footer from "./components/Footer/Footer";
 import ErrorContextProvider from "./context/ErrorContextProvider";
 import Modal from "./components/Modal/Modal";
 import ModalContextProvider from "./context/ModalContextProvider";
+import LoadMore from "./components/LoadMore/LoadMore";
+import LoadMoreContextProvider from "./context/LoadMoreContextProvider";
 
 function App() {
   console.log("Im in App");
@@ -23,19 +25,23 @@ function App() {
   return (
     <ErrorContextProvider>
       <ModalContextProvider>
-        <div className="main">
-          <div className="container__header">
-            <Header />
-            <Searchbar handleSubmit={handleSubmit} />
+        <LoadMoreContextProvider>
+          <div className="main">
+            <div className="container__header">
+              <Header />
+              <Searchbar handleSubmit={handleSubmit} />
+            </div>
           </div>
-          <Error />
-        </div>
 
-        <div className="books__container">
-          {searchTerm && <BookLoader searchTerm={searchTerm} />}
-        </div>
-        <Modal />
-        <Footer />
+          <div className="books__container">
+            {searchTerm && <BookLoader searchTerm={searchTerm} />}
+          </div>
+
+          <LoadMore />
+          <Modal />
+          <Error />
+          <Footer />
+        </LoadMoreContextProvider>
       </ModalContextProvider>
     </ErrorContextProvider>
   );

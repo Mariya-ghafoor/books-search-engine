@@ -48,7 +48,7 @@ function Card(book) {
         // description = full_description.replace(/^(.{500}[^\s]*).*/, "$1"); //this shows only 100 characters plus any subsequent non-space characters.
         publishedDate = book.publishedDate;
 
-        thumbnail = book.imageLinks.thumbnail;
+        thumbnail = book.imageLinks.thumbnail + "&fife=w20000-h20000";
       } catch {}
 
       setModalData({

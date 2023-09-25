@@ -26,11 +26,12 @@
   background-color: rgb(205, 182, 157);
   text-align: justify;
   font-size: 2vw;
+  border-radius: 10px;
 
   &__details {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
   }
   &__thumbnail {

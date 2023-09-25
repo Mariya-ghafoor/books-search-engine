@@ -52,7 +52,7 @@ function ShowBooksList(data) {
       //const averageRating = book.volumeInfo.averageRating;
       const full_description = book.volumeInfo.description;
       description = full_description.replace(/^(.{50}[^\s]*).*/, "$1"); //this shows only 50 characters plus any subsequent non-space characters.
-      thumbnail = book.volumeInfo.imageLinks.thumbnail;
+      thumbnail = book.volumeInfo.imageLinks.thumbnail + "&fife=w20000-h20000";
     } catch {
       (e) => {
         console.log(e.message);
