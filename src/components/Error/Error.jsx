@@ -3,9 +3,8 @@ import { ErrorContext } from "../../context/ErrorContextProvider";
 import styles from "./Error.module.scss";
 
 function Error() {
-  console.log("I AM IN ERROR");
   const { errorMessage } = useContext(ErrorContext);
-  console.log({ errorMessage });
+
   return (
     <>
       {errorMessage && (

@@ -3,7 +3,7 @@ import { LoadingSpinnerContext } from "../../context/LoadingSpinnerContextProvid
 
 function LoadingSpinner() {
   const { isLoading, setIsLoading } = useContext(LoadingSpinnerContext);
-  console.log("value of is loading is", isLoading);
+
   return <>{isLoading && <h2>Loading...</h2>}</>;
 }
 

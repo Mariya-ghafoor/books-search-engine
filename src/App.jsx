@@ -16,13 +16,9 @@ import LoadMoreContextProvider from "./context/LoadMoreContextProvider";
 import LoadingSpinnerContextProvider from "./context/LoadingSpinnerContextProvider";
 
 function App() {
-  console.log("Im in App");
   const [searchTerm, setSearchTerm] = useState(null);
-  const { errorMessage, setErrorMessage } = useContext(ErrorContext);
 
   const handleSubmit = (searchTerm) => {
-    console.log("App received searchterm ", searchTerm); //Need to send this searchTerm to Bookloader
-
     setSearchTerm(searchTerm);
   };
 

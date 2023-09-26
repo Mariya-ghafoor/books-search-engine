@@ -1,6 +1,4 @@
 export const getBooksList = async (searchTerm = "", maxResults = 10) => {
-  console.log("*****im in getbook list");
-  console.log("i received search term, ", searchTerm);
   let startIndex = 0;
 
   if (searchTerm !== "") {
@@ -11,8 +9,7 @@ export const getBooksList = async (searchTerm = "", maxResults = 10) => {
       throw new Error("Failed to fetch the books");
     }
     const data = await response.json();
-    console.log("sending to display results");
-    console.log(data);
+
     return data;
   }
 };

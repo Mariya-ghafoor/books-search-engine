@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { LoadMoreContext } from "../../context/LoadMoreContextProvider";
 import styles from "./LoadMore.module.scss";
 

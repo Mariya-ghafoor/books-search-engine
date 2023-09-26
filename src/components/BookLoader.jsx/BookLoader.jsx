@@ -11,28 +11,15 @@ function BookLoader({ searchTerm }) {
   let { maxResults, setMaxResults, showLoadMore, setShowLoadMore } =
     useContext(LoadMoreContext);
 
-  console.log("BookLoader receieved search term from App.jsx ", searchTerm);
-  console.log(
-    "BookLoader receieved maxResults from LoadMoreContext ",
-    maxResults
-  );
-
   // For first time search
 
   useEffect(() => {
-    console.log("useEffect called");
     setMaxResults(10);
 
     if (searchTerm != null) {
-      console.log("i am going to make a request to server");
-
       getBooksList(searchTerm, maxResults)
         .then((booksData) => {
           setBooksData(booksData);
-          console.log(
-            "*****Received books data from getBooksList**** ",
-            booksData
-          );
         })
         .catch(() => {
           console.log("AN ERROR OCCURED WHILE FETCHING BOOKS");
@@ -48,18 +35,10 @@ function BookLoader({ searchTerm }) {
   //For load more button
 
   useEffect(() => {
-    console.log("second useEffect called");
-
     if (searchTerm != null) {
-      console.log("i am going to make a request to server");
-
       getBooksList(searchTerm, maxResults)
         .then((booksData) => {
           setBooksData(booksData);
-          console.log(
-            "*****Received books data from getBooksList**** ",
-            booksData
-          );
         })
         .catch((e) => {
           console.log(

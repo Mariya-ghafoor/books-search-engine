@@ -10,15 +10,11 @@ function Modal() {
   let classes = `${styles.modal}`;
 
   useEffect(() => {
-    console.log("I am in useEffect of Modal");
-    console.log("model data receieved by Modal is: ", modalData);
     // classes += ` ${styles.show}`;
     setIsShown(true);
   }, [modalData]);
-  console.log("In Modal. Receieved modalData", modalData);
 
   const closeModalHandler = () => {
-    console.log("i am in close modal handler");
     setIsShown(false);
   };
   return (
