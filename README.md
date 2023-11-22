@@ -2,6 +2,8 @@
 
 ## Demo
 
+Live: https://mariya-ghafoor.github.io/books-search-engine/
+
 ## Purpose
 
 - The purpose of the project is to build a search engine that fetches data through Google Books API and displays it for the user. The user should also be able to get more details about a book when they click on it.
